@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>DBC CoE | Dashboard</title>
+    <!-- ChartJ -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+    <script type="text/javascript" src="js/chartjs-plugin-datalabels.min.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+
+    <!-- CK Editor -->
+    <script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
+
+    <!-- Google Chart Library -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  </head>
+
+  <body>
+    <!--NAVBAR -->
+    <nav class="navbar navbar-default navbar-expand-md navbar-dark">
+         <div class="container">
+              <a class="navbar-brand" href="#">DBC CoE</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Dashboard<span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="project.html">Projects</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="calendar.html">Calendar</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="task.html">Tasks</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="process.html">Processes</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="contracting.html">Contracting</a>
+                  </li>
+                </ul>
+        <!--
+                <form class="form-inline my-2 my-lg-0">
+                  <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+        -->
+                <ul class="navbar-nav navbar-right">
+                    <li class="nav-item nav-link"><a href="#" class="nav-link">Welcome!</a></li>
+                    <li class="nav-item nav-link" ><a href="login.html" class="nav-link">Logout</a></li>
+                </ul>
+              </div>
+        </div>
+    </nav>
+
+    <!--header-->
+
+    <header id="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    <h1 class="float-left"><span class="far fa-chart-bar"></span> Dashboard <small>Manage Portfolio</small></h1>
+                </div>
+                <div class="col-md-2">
+                    <div class="dropdown create float-right">
+                          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Create
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" data-toggle="modal" data-target="#newproject">New Project</a>
+                            <a class="dropdown-item" data-toggle="modal" data-target="#newtask">New Task</a>
+                          </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!--BREADCRUMB -->
+    <section id="breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="active">Dashboard</li>
+            </ol>
+        </div>
+    </section>
+
+
+      <div class="container">
+        <div class="row">
+    <!--SIDEBAR -->
+            <div class="col-md-2" id="sidebar">
+                <div class="list-group">
+                      <a href="index.html" class="list-group-item list-group-item-action active main-color-bg">
+                        <span class="far fa-chart-bar"></span> Dashboard
+                      </a>
+                      <a href="project.html" class="list-group-item list-group-item-action"><span class="far fa-folder"></span> Projects</a>
+                      <a href="calendar.html" class="list-group-item list-group-item-action"><span class="far fa-calendar"></span> Calendar</a>
+                      <a href="task.html" class="list-group-item list-group-item-action"><span class="fa fa-tasks"></span> Tasks</a>
+                      <a href="process.html" class="list-group-item list-group-item-action"><span class="fa fa-book"></span> Processes</a>
+                      <a href="contracting.html" class="list-group-item list-group-item-action"><span class="fa fa-certificate"></span> Contracting</a>
+                </div>
+            </div>
+    <!--Main Body -->
+            <div class="col-md-10">
+
+        <!--1.a Project Delivery Roada-->
+              <div class="container col-md-12">
+                <div class="card">
+                  <div class="card-header main-color-bg">
+                    2018 Project Delivery Road Map
+                  </div>
+                  <div class="card-body">
+                    <div class="container">
+                        <canvas id="myChart" ></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br/>
+        <!--1.b DBC Capacity Forecast Utilization-->
+              <div class="container col-md-12">
+                <div class="card">
+                  <div class="card-header main-color-bg">
+                    Resource Capacity Utilization & Forecast
+                  </div>
+                  <div class="card-body">
+                    <div class="container">
+                        <canvas id="utilizationchart" ></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br/>
+        <!--1.b-1 DBC Capacity Forecast Utilization - color by indices-->
+                  <div class="container col-md-12">
+                <div class="card">
+                  <div class="card-header main-color-bg">
+                    Resource Capacity Utilization & Forecast
+                  </div>
+                  <div class="card-body">
+                    <div class="container">
+                        <canvas id="utilizationchart1" ></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br/>
+
+
+
+        <!--2. Budget, Schedule, Issues, Tasks -->
+                <div class="container">
+                      <div class="card">
+                        <div class="card-header main-color-bg">
+                          DBC Project Delivery Health Status
+                        </div>
+                        <div class="row">
+                          <div class="container row">
+                              <div class="card-body dash-box bg-faded col-md-6">
+                                  <h5 class="card-title">Schedule</h5>
+                                  <canvas class="portfoliostatus" id="portfolioschedule"></canvas>
+                              </div>
+                              <div class="card-body dash-box bg-faded col-md-6">
+                                  <h5 class="card-title">Budget</h5>
+                                  <canvas class="portfoliostatus" id="budgetchart"></canvas>
+                              </div>
+                          </div>
+                          <div class="container row">
+                              <div class="card-body dash-box bg-faded col-md-6">
+                                  <h5 class="card-title">Issues</h5>
+                                  <canvas class="portfoliostatus" id="issuechart"></canvas>
+                              </div>
+                              <div class="card-body dash-box bg-faded col-md-6">
+                                  <h5 class="card-title">Task</h5>
+                                  <canvas class="portfoliostatus" id="taskchart"></canvas>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+        <!--
+              <div class="container">
+                <div class="row">
+                <div class="col-md-3">
+                    <div class="card dash-box">
+                    <div class="card-header main-color-bg">
+                      Schedule
+                    </div>
+                    <div class="card-body bg-faded">
+                      Lorem ipsum dolor sit amet.
+                    </div>
+                    </div>
+                </div>
+                <div class="col-md-3 ">
+                    <div class="card dash-box">
+                    <div class="card-header main-color-bg">
+                      Budget
+                    </div>
+                    <div class="card-body">
+                      Lorem ipsum dolor sit amet.
+                    </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card dash-box">
+                    <div class="card-header main-color-bg">
+                      Issues
+                    </div>
+                    <div class="card-body">
+                      Lorem ipsum dolor sit amet.
+                    </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card dash-box">
+                    <div class="card-header main-color-bg">
+                      Task
+                    </div>
+                    <div class="card-body">
+                      Lorem ipsum dolor sit amet.
+                    </div>
+                    </div>
+                </div>
+              </div>
+              </div>
+              -->
+              <br/>
+        <!--3. Resource Utilization -->
+              <div class="container">
+                <div class="card">
+                  <div class="card-header main-color-bg">
+                    Resource Utilization
+                  </div>
+                      <div class="card-body bg-faded">
+                              <h5 class="card-title">Project Management</h5>
+                              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti nesciunt repudiandae expedita quasi, exercitationem sunt libero magnam repellat saepe? Tempore fugit blanditiis, cumque quaerat libero, aliquam perspiciatis rem voluptate hic.
+                      </div>
+                      <div class="card-body bg-faded">
+                              <h5 class="card-title">Systems Analysis</h5>
+                              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut sit hic, distinctio odit molestiae repellat eos possimus vero iste nulla veritatis explicabo, tenetur, consequatur. Ipsam consectetur possimus a iusto est!
+                      </div>
+                      <div class="card-body bg-faded">
+                              <h5 class="card-title">Development</h5>
+                              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias soluta doloribus, consequuntur perspiciatis culpa, sit omnis magni eligendi, laborum architecto ipsa, modi quisquam ea in fugiat excepturi libero blanditiis dolor.
+                      </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div><br/><!-- /.container -->
+    <!-- google chart -->
+         <div class="container col-md-12">
+          <div class="card">
+            <div class="card-header main-color-bg">
+              2018 Project Delivery Road Map
+            </div>
+            <div class="card-body">
+              <div class="container" id="myGoogleChart">
+              </div>
+            </div>
+          </div>
+        </div>
+        </br>
+
+    <footer id="footer">
+      <p>Copyright DBC CoE, &copy; 2018</p>
+    </footer>
+
+
+    <!-- MODALS -->
+    <!-- New Project -->
+      <div class="modal fade" id="newproject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content modal-wide">
+            <form action="">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add Project</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                      <label>Project Title</label>
+                      <input type="text" class="form-control" placeholder="Project Title">
+                    </div>
+                    <div class="form-group">
+                      <label>Project Description</label>
+                      <textarea name="editor1" class="form-control" placeholder="Describe Project Objectives"></textarea>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox"> Approved
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <label>Meta Tags</label>
+                      <input type="text" class="form-control" placeholder="Add Some Tags...">
+                    </div>
+                    <div class="form-group">
+                      <label>Meta Description</label>
+                      <input type="text" class="form-control" placeholder="Add Meta Description...">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+    <!-- New Tasks -->
+
+      <div class="modal fade" id="newtask" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content modal-wide">
+            <form action="">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add Task</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                      <label>Task Name</label>
+                      <input type="text" class="form-control" placeholder="Task Name">
+                    </div>
+                    <div class="form-group">
+                      <label>Task Description</label>
+                      <textarea name="editor1" class="form-control" placeholder="Describe Task"></textarea>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox"> Approved
+                      </label>
+                    </div>
+                    <div class="form-group">
+                      <label>Meta Tags</label>
+                      <input type="text" class="form-control" placeholder="Add Some Tags...">
+                    </div>
+                    <div class="form-group">
+                      <label>Meta Description</label>
+                      <input type="text" class="form-control" placeholder="Add Meta Description...">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script type="text/javascript" src="js/index2.js"></script>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/vendor/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
